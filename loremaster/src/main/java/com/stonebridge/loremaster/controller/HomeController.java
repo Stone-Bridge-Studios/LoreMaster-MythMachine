@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.stonebridge.loremaster.service.UserService;
+import com.stonebridge.loremaster.service.LMUserService;
 
 @Controller
 public class HomeController {
@@ -27,7 +27,7 @@ public class HomeController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String showWelcomePage(ModelMap model, @RequestParam String name, @RequestParam String password) {
 
-        boolean isValidUser = UserService.validateUser(name, password);
+        boolean isValidUser = LMUserService.validateUser(name, password);
 
         if (!isValidUser) {
             model.put("errorMessage", "Access Denied , Invalid Credentials");
