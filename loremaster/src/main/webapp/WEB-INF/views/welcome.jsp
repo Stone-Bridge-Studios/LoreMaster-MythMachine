@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>LoreMaster Character Creator</title>
+        <link rel="stylesheet" type="text/css" href="\css\style.css">
     </head>
     <body>
         <center>

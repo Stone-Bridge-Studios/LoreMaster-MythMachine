@@ -9,7 +9,7 @@ public class LMUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @Column(name = "userid")
+    @Column(name = "user_id")
     private Long userID;
 
     private String username;

@@ -1,9 +1,6 @@
 package com.stonebridge.loremaster.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stonebridge.loremaster.model.LMUser;
@@ -12,40 +9,36 @@ import com.stonebridge.loremaster.repository.LMUserRepository;
 @Service
 public class LMUserService {
 
-    public static boolean validateUser(String userid, String password) {
-        return userid.equalsIgnoreCase("admin")
-                && password.equalsIgnoreCase("password");
+    public boolean validateUser(LMUserRepository repository, String userEmail, String userPassword) {
+
+        // TODO Find a faster way to do this
+
+        List<LMUser> users = repository.findAll();
+        for (LMUser user : users)
+            if (user.getEmail().equals(userEmail) && user.getPassword().equals(userPassword)) {
+                return true;
+            }
+        return false;
+
     }
 
-    @Autowired
-    private LMUserRepository userRepository;
+    public boolean accountExists(LMUserRepository repository, String userEmail, String userName) {
 
-    public List<LMUser> getAllUsers() {
-        return userRepository.findAll();
-    }
+        // TODO Find a faster way to do this
 
-    @SuppressWarnings("null")
-    public LMUser getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
+        List<LMUser> users = repository.findAll();
 
-    @SuppressWarnings("null")
-    public LMUser createUser(LMUser user) {
-        return userRepository.save(user);
-    }
+        for (LMUser user : users)
+            if (user.getEmail().equals(userEmail) || user.getUsername().equals(userName))
+                return true;
 
-    @SuppressWarnings("null")
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+        return false;
 
-    @SuppressWarnings("null")
-    public LMUser save(LMUser user) {
-        return userRepository.save(user);
     }
 
     @SuppressWarnings("null")
-    public Optional<LMUser> findById(Long id) {
-        return userRepository.findById(id);
+    public LMUser saveNewUser(LMUserRepository repository, LMUser user) {
+        return repository.save(user);
     }
+
 }
