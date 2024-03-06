@@ -12,6 +12,9 @@ public class LMUserService {
 
         LMUser user = repository.findByEmail(userEmail);
 
+        if (user == null)
+            return false;
+
         if (user.getPassword().equals(userPassword))
             return true;
         return false;
@@ -21,6 +24,9 @@ public class LMUserService {
     public boolean accountExists(LMUserRepository repository, String userEmail, String userName) {
 
         LMUser user = repository.findByEmail(userEmail);
+
+        if (user == null)
+            return false;
 
         if (user.getEmail().equals(userEmail) || user.getUsername().equals(userName))
             return true;
