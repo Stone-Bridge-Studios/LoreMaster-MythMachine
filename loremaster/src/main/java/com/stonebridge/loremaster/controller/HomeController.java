@@ -80,6 +80,7 @@ public class HomeController {
             newUser.setEmail(email);
             newUser.setUsername(name);
             newUser.setPassword(password);
+            newUser.setIsAdmin(false);
             service.saveNewUser(userRepository, newUser);
             return "welcome";
         }
