@@ -16,18 +16,6 @@ import com.stonebridge.loremaster.service.*;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private LMSheetRepository sheetRepository;
-
-    @Autowired
-    private LMAttributeRepository attributeRepository;
-
-    @Autowired
-    private LMCharacterRepository characterRepository;
-
-    @Autowired
-    private LMCharacterAttributeRepository cAttributeRepository;
-
     // Display Characters Page
     @RequestMapping(value = "/characters", method = RequestMethod.GET)
     public String showCharactersPage(ModelMap model) {
@@ -41,7 +29,6 @@ public class HomeController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreatePage(ModelMap model) {
-
         return "create";
     }
 
