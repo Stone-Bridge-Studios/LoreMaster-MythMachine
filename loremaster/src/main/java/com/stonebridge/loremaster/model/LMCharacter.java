@@ -32,25 +32,25 @@ public class LMCharacter {
         characterName = inputCharacterName;
     }
 
-    @Column(name = "character_user_id")
-    private String characterUserID;
+    @Column(name = "user_id")
+    private Long characterUserID;
 
-    public String getCharacterUserID() {
+    public Long getCharacterUserID() {
         return characterUserID;
     }
 
-    public void setCharacterUserID(String inputID) {
+    public void setCharacterUserID(Long inputID) {
         characterUserID = inputID;
     }
 
-    @Column(name = "character_sheet_id")
-    private String characterSheetID;
+    @Column(name = "sheet_id")
+    private Long characterSheetID;
 
-    public String getCharacterSheetID() {
+    public Long getCharacterSheetID() {
         return characterSheetID;
     }
 
-    public void setCharacterSheetID(String inputID) {
+    public void setCharacterSheetID(Long inputID) {
         characterSheetID = inputID;
     }
 

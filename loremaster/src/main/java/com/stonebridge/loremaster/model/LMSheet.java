@@ -32,14 +32,14 @@ public class LMSheet {
         sheetName = inputSheetName;
     }
 
-    @Column(name = "sheet_user_id")
-    private String sheetUserID;
+    @Column(name = "user_id")
+    private Long sheetUserID;
 
-    public String getSheetUserID() {
+    public Long getSheetUserID() {
         return sheetUserID;
     }
 
-    public void setSheetUserID(String inputID) {
+    public void setSheetUserID(Long inputID) {
         sheetUserID = inputID;
     }
 

@@ -43,14 +43,14 @@ public class LMAttribute {
         attributeDesc = inputAttributeDesc;
     }
 
-    @Column(name = "attribute_sheet_id")
-    private String attributeSheetID;
+    @Column(name = "sheet_id")
+    private Long attributeSheetID;
 
-    public String getAttributeSheetID() {
+    public Long getAttributeSheetID() {
         return attributeSheetID;
     }
 
-    public void setAttributeSheetID(String inputID) {
+    public void setAttributeSheetID(Long inputID) {
         attributeSheetID = inputID;
     }
 

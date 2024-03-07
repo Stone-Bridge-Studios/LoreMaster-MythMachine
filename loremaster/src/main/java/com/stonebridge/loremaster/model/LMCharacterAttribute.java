@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "lm_character_attributes")
 @SequenceGenerator(name = "character_attributes_sequence", sequenceName = "character_attributes_sequence", allocationSize = 1)
-public class LMCharacterAttributes {
+public class LMCharacterAttribute {
 
     // Getters, Setters & Column Names
     @Id
-    @Column(name = "ca_character_id")
+    @Column(name = "character_id")
     private Long characterID;
 
     public Long getCharacterID() {
@@ -20,8 +20,7 @@ public class LMCharacterAttributes {
         characterID = inputID;
     }
 
-    @Id
-    @Column(name = "ca_attribute_id")
+    @Column(name = "attribute_id")
     private Long attributeID;
 
     public Long getAttributeID() {
@@ -39,7 +38,7 @@ public class LMCharacterAttributes {
         return CAValue;
     }
 
-    public void setCharacterUserID(String inputValue) {
+    public void setCAValue(String inputValue) {
         CAValue = inputValue;
     }
 
