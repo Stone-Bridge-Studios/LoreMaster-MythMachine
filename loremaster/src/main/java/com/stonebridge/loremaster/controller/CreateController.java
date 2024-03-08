@@ -28,7 +28,7 @@ public class CreateController {
             attributeList.add(att);
         }
 
-        model.addAttribute("sheetAttributes", attributeList);
+        model.addAttribute("attributeList", attributeList);
 
         return "createSheetAttributeEditor";
     }

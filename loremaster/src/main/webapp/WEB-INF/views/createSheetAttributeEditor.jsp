@@ -1,3 +1,7 @@
+
+<%@ taglib prefix="c" 
+       uri="http://java.sun.com/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,21 +46,16 @@
 </head>
 <body>
 
+    <body>
+        <c:out value="This is where Java can be ran via JSTL" />
+    </body>
+
     <div class="bottom-nav">
         <a href="/characters"><button>Chracters</button></a>
         <a href="/sheets"><button>Sheets</button></a>
         <a href="/create"><button class="selected">Create</button></a>
         <a href="/explore"><button>Explore</button></a>
     </div>
-
-    <h1>List of Attributes</h1>
-    <ul>
-        <c:forEach items="${sheetAttributes}" var="attribute">
-            <li>
-                <button>"${attribute.attributeName}"</button>
-            </li>
-        </c:forEach>
-    </ul>
 
 </body>
 </html>
