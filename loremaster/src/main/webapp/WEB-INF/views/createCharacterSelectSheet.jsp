@@ -50,8 +50,7 @@
     </div>
 
     <div class="center-buttons">
-        <a href="/createCharacterSelectSheet"><button>Characters</button></a>
-        <a href="/createSheetAttributeEditor"><button>Sheets</button></a>
+        <button>Welcome to the jungle</button>
     </div>
 
 </body>

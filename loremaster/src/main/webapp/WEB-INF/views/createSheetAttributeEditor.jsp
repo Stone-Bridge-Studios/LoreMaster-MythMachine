@@ -49,10 +49,14 @@
         <a href="/explore"><button>Explore</button></a>
     </div>
 
-    <div class="center-buttons">
-        <a href="/createCharacterSelectSheet"><button>Characters</button></a>
-        <a href="/createSheetAttributeEditor"><button>Sheets</button></a>
-    </div>
+    <h1>List of Attributes</h1>
+    <ul>
+        <c:forEach items="${sheetAttributes}" var="attribute">
+            <li>
+                <button>"${attribute.attributeName}"</button>
+            </li>
+        </c:forEach>
+    </ul>
 
 </body>
 </html>
