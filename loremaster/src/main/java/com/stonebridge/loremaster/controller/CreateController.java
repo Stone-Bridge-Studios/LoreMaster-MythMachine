@@ -10,30 +10,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.stonebridge.loremaster.model.logical.Attribute;
 
+import jakarta.servlet.http.HttpSession;
+
 // Manage Character & Sheet Creation Pages
 @Controller
 public class CreateController {
 
     // #region Sheet Creation
 
+    // Display Sheet Editor
     @RequestMapping(value = "/createSheetAttributeEditor", method = RequestMethod.GET)
-    public String showSheetAttributeEditor(ModelMap model) {
+    public String showSheetAttributeEditor(HttpSession session) {
 
-        // Create a Test List of Attributes
-        List<Attribute> attributeList = new ArrayList<>();
+        // Create Attribute Retrieval Flag
+        String reload = (String) session.getAttribute("reloadAttributes");
 
-        for (int i = 0; i < 5; i++) {
-            Attribute att = new Attribute();
-            att.setAttributeName("Attribute Number " + Integer.toString(i));
-            attributeList.add(att);
+        if (reload == null) {
+            // Create a Test List of Attributes
+            List<Attribute> attributeList = new ArrayList<>();
+            session.setAttribute("attributes", attributeList);
         }
-
-        model.addAttribute("attributeList", attributeList);
 
         return "createSheetAttributeEditor";
     }
 
     // #endregion
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "/addNewAttribute", method = RequestMethod.POST)
+    public String addNewAttribute(HttpSession session) {
+
+        // Get Current Attribute List
+        List<Attribute> attributeList = (List<Attribute>) session.getAttribute("attributes");
+
+        // Add a new attribute
+        Attribute att = new Attribute();
+        att.setAttributeName("New Attribute");
+        attributeList.add(att);
+
+        session.setAttribute("attributes", attributeList);
+        session.setAttribute("reloadAttributes", "false");
+
+        return "redirect:/createSheetAttributeEditor";
+    }
 
     // #region Character Creation
     @RequestMapping(value = "/createCharacterSelectSheet", method = RequestMethod.GET)

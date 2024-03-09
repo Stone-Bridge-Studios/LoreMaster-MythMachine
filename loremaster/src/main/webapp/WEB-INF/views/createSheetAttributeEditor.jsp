@@ -1,6 +1,5 @@
 
-<%@ taglib prefix="c" 
-       uri="http://java.sun.com/jstl/core" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <!DOCTYPE html>
 <html>
@@ -46,9 +45,18 @@
 </head>
 <body>
 
-    <body>
-        <c:out value="This is where Java can be ran via JSTL" />
-    </body>
+    <h1>Edit Sheet Attributes</h1>
+    <ul>
+        <c:forEach items="${attributes}" var="att">
+            <li>
+                <button>${att.attributeName}</button>
+            </li>
+        </c:forEach>
+    </ul>
+
+    <form action="/addNewAttribute" method="post">
+        <button type="submit">Add Attribute</button>
+    </form>
 
     <div class="bottom-nav">
         <a href="/characters"><button>Chracters</button></a>
