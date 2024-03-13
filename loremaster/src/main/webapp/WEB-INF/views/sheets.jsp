@@ -1,3 +1,5 @@
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +35,46 @@
     .bottom-nav button.selected {
         background-color: #777;
     }
+    
+    .sheet {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .sheet img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttons button {
+        margin-bottom: 5px;
+    }
+
 </style>
 </head>
 <body>
+
+    <c:forEach items="${userSheets}" var="userSheet">
+        <div class="sheet">
+            <span>${userSheet.sheetName}</span> <!-- Move sheet name above the rest of the content -->
+            <img src="\images\sheet.jpg" alt="Sheet Image">
+            <div class="buttons">
+                <button class="edit-button">Edit</button>
+                <button class="share-button">Share</button>
+                <button class="delete-button">Delete</button>
+            </div>
+        </div>
+    </c:forEach>
+    
 
     <div class="bottom-nav">
         <a href="/characters"><button>Chracters</button></a>
@@ -43,6 +82,5 @@
         <a href="/create"><button>Create</button></a>
         <a href="/explore"><button>Explore</button></a>
     </div>
-
 </body>
 </html>

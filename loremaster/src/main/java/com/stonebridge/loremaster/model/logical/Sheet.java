@@ -20,8 +20,8 @@ public class Sheet {
         sheetName = "Unnamed Sheet";
     }
 
-    public Sheet(Long sheetID, String name, String desc) {
-        sheetUserID = sheetID;
+    public Sheet(Long userID, String name) {
+        sheetUserID = userID;
         sheetName = name;
     }
 

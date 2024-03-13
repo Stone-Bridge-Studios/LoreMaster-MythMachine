@@ -1,3 +1,6 @@
+
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,16 +45,14 @@
 </head>
 <body>
 
-    <div class="bottom-nav">
-        <a href="/characters"><button>Chracters</button></a>
-        <a href="/sheets"><button>Sheets</button></a>
-        <a href="/create"><button class="selected">Create</button></a>
-        <a href="/explore"><button>Explore</button></a>
-    </div>
-
-    <div class="center-buttons">
-        
-    </div>
+    <p1>Sheet Title:</p1>
+    <form method="post", action="/finalizeNewSheet">
+        <br><input type="text" name="sheetTitle" class="form" /><br><br>        
+        <div class="bottom-nav">
+            <a href="/createSheetAttributeEditor"><button>Back</button></a>
+            <input value="Finish" class="submitInput" type="submit">
+        </div>
+    </form>
 
 </body>
 </html>
