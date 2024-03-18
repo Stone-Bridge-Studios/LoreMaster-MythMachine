@@ -11,7 +11,7 @@
     </head>
     <body>
     <div class="wrapper">
-        <h1>Login</h1>
+        <h1>Create an Account</h1>
         <font color="red">${errorMessage}</font>
         <form method="post">
             <div class="input-box">
@@ -23,17 +23,9 @@
             <i class='bx bxs-lock-alt' ></i>
             </div>
             
-            <div class="remember-forgot">
-            <label><input type="checkbox">Remember me
-            </label>
-            <a href="#">Forgot Password?</a>
-            </div>
             
             <button type="submit" class="btn">Login</button>
-            
-            <div class="register-link">
-            <p>Don't have an account? <a href="/register">Register</a></p>
-            </div>
+      
         </form>
      </div>
     </body>
