@@ -68,9 +68,9 @@
             <span>${userSheet.sheetName}</span> <!-- Move sheet name above the rest of the content -->
             <img src="\images\sheet.jpg" alt="Sheet Image">
             <div class="buttons">
-                <button class="edit-button">Edit</button>
+                <button onclick="editExistingSheet('${userSheet.sheetID}')" class="edit-button">Edit</button>
                 <button class="share-button">Share</button>
-                <button class="delete-button">Delete</button>
+                <button onclick="deleteSheet('${userSheet.sheetID}')" class="delete-button">Delete</button>
             </div>
         </div>
     </c:forEach>
@@ -82,5 +82,34 @@
         <a href="/create"><button>Create</button></a>
         <a href="/explore"><button>Explore</button></a>
     </div>
+
+    <script>
+
+        function editExistingSheet(sheetID) {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","/editExistingSheet",true);
+            xhr.setRequestHeader("Content-Type","application/json")
+
+            xhr.send(JSON.stringify(sheetID));
+
+            // Redirect to Sheet Editor
+            window.location.href = "/createSheetAttributeEditor";
+
+        }
+
+        function deleteSheet(sheetID) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","/deleteSheet",true);
+            xhr.setRequestHeader("Content-Type","application/json")
+            xhr.send(JSON.stringify(sheetID));
+            
+            // TODO Find better way to refresh the page
+            window.location.href = "/create";
+            window.location.href = "/sheets";
+        }        
+
+    </script>
+
 </body>
 </html>

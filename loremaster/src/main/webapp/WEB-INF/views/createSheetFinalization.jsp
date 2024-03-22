@@ -46,13 +46,15 @@
 <body>
 
     <p1>Sheet Title:</p1>
-    <form method="post", action="/finalizeNewSheet">
-        <br><input type="text" name="sheetTitle" class="form" /><br><br>        
+    <form method="post", action="/finalizeNewSheet" autocomplete="off">
+        <br><input type="text" name="sheetTitle" class="form" value="${sheetTitle}" /><br><br>        
         <div class="bottom-nav">
-            <a href="/createSheetAttributeEditor"><button>Back</button></a>
+            <a href="/createSheetAttributeEditor">Back</a>
             <input value="Finish" class="submitInput" type="submit">
         </div>
     </form>
+
+    <script src="\js\sheetEditor.js"></script>
 
 </body>
 </html>

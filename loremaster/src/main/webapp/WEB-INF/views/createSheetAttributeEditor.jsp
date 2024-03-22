@@ -55,11 +55,24 @@
         <button onclick="addAttribute()">Add Attribute</button>
     
         <div class="bottom-nav">
-            <a href="/create"><button>Back</button></a>
+            <a href="/sheets"><button>Back</button></a>
             <button onclick="saveAttributes()">Next</button>
             <!--</a>-->
         </div>                
         
         <script src="\js\sheetEditor.js"></script>
+
+        <script>
+            window.onload = function() {
+                if ('${sheetTargetID}' != -1) {
+                    console.log("it is not -1, it is, in fact, " + '${sheetTargetID}'.toString())
+                    loadExistingAttributes('${editAttributes}');
+                }
+                else {
+                    console.log("it IS -1")
+                }
+            }
+        </script>
+
     </body>
 </html>

@@ -51,7 +51,7 @@
 
     <div class="center-buttons">
         <a href="/createCharacterSelectSheet"><button>Characters</button></a>
-        <a href="/createSheetAttributeEditor"><button>Sheets</button></a>
+        <a href="/createNewSheet"><button>Sheets</button></a>
     </div>
 
 </body>
