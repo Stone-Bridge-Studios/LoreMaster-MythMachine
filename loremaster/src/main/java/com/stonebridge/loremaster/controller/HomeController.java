@@ -8,7 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.stonebridge.loremaster.model.LMCharacter;
 import com.stonebridge.loremaster.model.LMSheet;
+import com.stonebridge.loremaster.repository.LMCharacterRepository;
 import com.stonebridge.loremaster.repository.LMSheetRepository;
 
 // Manage Home Pages
@@ -18,8 +20,16 @@ public class HomeController {
     @Autowired
     private LMSheetRepository sheetRepository;
 
+    @Autowired
+    private LMCharacterRepository characterRepository;
+
     @RequestMapping(value = "/characters", method = RequestMethod.GET)
     public String showCharactersPage(ModelMap model) {
+
+        // Get All of the Logged in User's Characters
+        List<LMCharacter> userCharacters = characterRepository.getUserCharacters(0l); // TODO session var
+        model.addAttribute("userCharacters", userCharacters);
+
         return "characters";
     }
 

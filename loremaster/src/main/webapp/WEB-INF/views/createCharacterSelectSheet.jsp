@@ -1,3 +1,5 @@
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +44,13 @@
 </head>
 <body>
 
+    <c:forEach items="${userSheets}" var="userSheet">
+        <div class="sheet">
+            <span>${userSheet.sheetName}</span> <!-- Move sheet name above the rest of the content -->
+            <button onclick="selectCharacterSheet('${userSheet.sheetID}')"><img src="\images\sheet.jpg" alt="Sheet Image"></button>
+        </div>
+    </c:forEach>
+
     <div class="bottom-nav">
         <a href="/characters"><button>Chracters</button></a>
         <a href="/sheets"><button>Sheets</button></a>
@@ -52,6 +61,22 @@
     <div class="center-buttons">
         
     </div>
+
+    <script>
+
+        function selectCharacterSheet(sheetID) {
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","/selectCharacterSheet",true);
+            xhr.setRequestHeader("Content-Type","application/json")
+            xhr.send(JSON.stringify(sheetID));
+            
+            // TODO Find better way to refresh the page
+            window.location.href = "/characterEditor";
+
+        }
+
+    </script>
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,12 +39,62 @@
 </head>
 <body>
 
+    <c:forEach items="${userCharacters}" var="userChar">
+        <div class="character">
+            <span>${userChar.characterName}</span>
+            <button onclick="viewCharacter('${userChar.characterID}')"><img src="\images\character.jpg" alt="Character Image"></button>
+            <div class="buttons">
+                <button onclick="editExistingCharacter('${userChar.characterID}')" class="edit-button">Edit</button>
+                <button class="share-button">Share</button>
+                <button onclick="deleteCharacter('${userChar.characterID}')" class="delete-button">Delete</button>                
+            </div>
+        </div>
+    </c:forEach>    
+
     <div class="bottom-nav">
         <a href="/characters"><button class="selected">Chracters</button></a>
         <a href="/sheets"><button>Sheets</button></a>
         <a href="/create"><button>Create</button></a>
         <a href="/explore"><button>Explore</button></a>
     </div>
+
+    <script>
+
+        function editExistingCharacter(charID) {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","/editExistingCharacter",true);
+            xhr.setRequestHeader("Content-Type","application/json")
+
+            xhr.send(JSON.stringify(charID));
+
+            // Redirect to Sheet Editor
+            window.location.href = "/characterEditor";
+
+        }
+
+        function deleteCharacter(charID) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","/deleteCharacter",true);
+            xhr.setRequestHeader("Content-Type","application/json")
+            xhr.send(JSON.stringify(charID));
+            
+            // TODO Find better way to refresh the page
+            window.location.href = "/create";
+            window.location.href = "/characters";
+        }
+
+        function viewCharacter(charID) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","/viewCharacter",true);
+            xhr.setRequestHeader("Content-Type","application/json")
+            xhr.send(JSON.stringify(charID));
+            
+            // TODO Find better way to refresh the page
+            window.location.href = "/characterViewer";
+        }        
+
+    </script>
 
 </body>
 </html>

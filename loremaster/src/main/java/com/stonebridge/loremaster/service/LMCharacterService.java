@@ -5,6 +5,7 @@ package com.stonebridge.loremaster.service;
 import org.springframework.stereotype.Service;
 
 import com.stonebridge.loremaster.model.LMCharacter;
+import com.stonebridge.loremaster.repository.LMCharacterAttributeRepository;
 import com.stonebridge.loremaster.repository.LMCharacterRepository;
 
 @Service
@@ -14,6 +15,12 @@ public class LMCharacterService {
     public LMCharacter saveNewCharacter(LMCharacterRepository repository,
             LMCharacter newCharacter) {
         return repository.save(newCharacter);
+    }
+
+    public void deleteCharacter(LMCharacterRepository characterRepository,
+            LMCharacterAttributeRepository charAttributeRepository, Long charID) {
+        charAttributeRepository.deleteAllCharacterAttributes(charID);
+        characterRepository.deleteCharacter(charID);
     }
 
 }

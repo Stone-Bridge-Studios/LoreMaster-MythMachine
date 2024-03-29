@@ -65,11 +65,7 @@
         <script>
             window.onload = function() {
                 if ('${sheetTargetID}' != -1) {
-                    console.log("it is not -1, it is, in fact, " + '${sheetTargetID}'.toString())
                     loadExistingAttributes('${editAttributes}');
-                }
-                else {
-                    console.log("it IS -1")
                 }
             }
         </script>

@@ -9,6 +9,14 @@ public class LMCharacterAttribute {
 
     // Getters, Setters & Column Names
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "character_attributes_sequence")
+    @Column(name = "ca_id")
+    private Long caID;
+
+    public Long getCaID() {
+        return caID;
+    }
+
     @Column(name = "character_id")
     private Long characterID;
 
