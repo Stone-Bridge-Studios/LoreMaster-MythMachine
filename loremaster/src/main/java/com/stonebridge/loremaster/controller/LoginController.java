@@ -13,6 +13,8 @@ import com.stonebridge.loremaster.model.LMUser;
 import com.stonebridge.loremaster.repository.LMUserRepository;
 import com.stonebridge.loremaster.service.LMUserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
@@ -22,7 +24,7 @@ public class LoginController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("message", "Welcome to LoreMaster!");
-        return "index"; // This will return "index.jsp"
+        return "redirect:/login"; // This will return "index.jsp"
     }
 
     // Display Login Page
@@ -33,7 +35,8 @@ public class LoginController {
 
     // Get Information From Login
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String showWelcomePage(ModelMap model, @RequestParam String email, @RequestParam String password) {
+    public String showWelcomePage(ModelMap model, HttpSession session, @RequestParam String email,
+            @RequestParam String password) {
 
         LMUserService service = new LMUserService();
         boolean isValidUser = service.validateUser(userRepository, email, password);
@@ -46,7 +49,13 @@ public class LoginController {
         model.put("email", email);
         model.put("password", password);
 
-        return "welcome";
+        // Store User ID & Username in Session
+        LMUser user = userRepository.findByEmail(email);
+        String username = userRepository.getUserName(user.getUserID());
+        session.setAttribute("userID", user.getUserID());
+        session.setAttribute("userName", username);
+
+        return "characters";
     }
 
     // Display Logout Page (Just return to the login page for now)
@@ -82,7 +91,7 @@ public class LoginController {
             newUser.setPassword(password);
             newUser.setIsAdmin(false);
             service.saveNewUser(userRepository, newUser);
-            return "welcome";
+            return "redirect:/login";
         }
     }
 }

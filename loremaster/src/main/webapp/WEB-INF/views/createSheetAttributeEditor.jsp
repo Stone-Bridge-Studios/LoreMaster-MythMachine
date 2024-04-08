@@ -45,12 +45,26 @@
     </head>
     <body>
 
+        <header>
+            <nav>
+              <div class="logo">
+                <img src="\images\loremaster_icon.jpg" alt="App Logo">
+                <span>LoreMaster Character Creator | Sheet Attribute Editor</span>
+              </div>
+              <div class="profile-icon">
+                <span>${userName}</span>
+                <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
+              </div>
+            </nav>
+          </header>        
+
         <div>
             <!-- Attributes Will Be Appended Here -->
             <ul id="attList">
                 
             </ul>            
         </div>
+        
 
         <button onclick="addAttribute()">Add Attribute</button>
     

@@ -44,6 +44,19 @@
 </head>
 <body>
 
+    <header>
+        <nav>
+          <div class="logo">
+            <img src="\images\loremaster_icon.jpg" alt="App Logo">
+            <span>LoreMaster Character Creator | Select Character Sheet</span>
+          </div>
+          <div class="profile-icon">
+            <span>${userName}</span>
+            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
+          </div>
+        </nav>
+      </header>    
+
     <c:forEach items="${userSheets}" var="userSheet">
         <div class="sheet">
             <span>${userSheet.sheetName}</span> <!-- Move sheet name above the rest of the content -->

@@ -12,7 +12,8 @@
             Email : <input type="text" name="email" /><br><br>
             User Name : <input type="text" name="name" /><br><br>
             Password  : <input type="password" name="password" /><br><br>
-            <input type="submit"/>
+            <a href="/login"><input value="Back" class="submitInput"/></a>
+            <input value="Create Account" class="submitInput" type="submit"/>
         </form>
     </center>
 </html>

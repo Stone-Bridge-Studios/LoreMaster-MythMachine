@@ -59,9 +59,23 @@
         margin-bottom: 5px;
     }
 
+
 </style>
 </head>
 <body>
+
+    <header>
+        <nav>
+          <div class="logo">
+            <img src="\images\loremaster_icon.jpg" alt="App Logo">
+            <span>LoreMaster Character Creator | Your Sheets</span>
+          </div>
+          <div class="profile-icon">
+            <span>${userName}</span>
+            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
+          </div>
+        </nav>
+      </header>       
 
     <c:forEach items="${userSheets}" var="userSheet">
         <div class="sheet">

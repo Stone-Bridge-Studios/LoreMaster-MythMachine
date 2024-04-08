@@ -33,6 +33,12 @@
     .bottom-nav button.selected {
         background-color: #777;
     }
+    .center-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }    
+
 </style>
 </head>
 <body>
@@ -41,20 +47,25 @@
         <nav>
           <div class="logo">
             <img src="\images\loremaster_icon.jpg" alt="App Logo">
-            <span>LoreMaster Character Creator | Explore</span>
+            <span>LoreMaster Character Creator | Your Profile</span>
           </div>
           <div class="profile-icon">
             <span>${userName}</span>
-            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
+            <img src="\images\default_pfp.png" alt="Profile Picture">
           </div>
         </nav>
-      </header>       
+    </header>
+
+    <img src="\images\default_pfp.png" alt="Profile Picture">
+    <h1>${userName}</h1>
+    <a href="/logoutUser"><button>Log Out</button></a>
+    <a href="/deleteAccount"><button>Delete Account</button></a>
 
     <div class="bottom-nav">
         <a href="/characters"><button>Chracters</button></a>
         <a href="/sheets"><button>Sheets</button></a>
         <a href="/create"><button>Create</button></a>
-        <a href="/explore"><button class="selected">Explore</button></a>
+        <a href="/explore"><button>Explore</button></a>
     </div>
 
 </body>

@@ -188,7 +188,7 @@ public class CreateController {
             // Construct Sheet to Save to DB
             LMSheet newSheet = new LMSheet();
             newSheet.setSheetName(sheetTitle);
-            newSheet.setSheetUserID(0l); // TODO Pass in User ID from Session Variable
+            newSheet.setSheetUserID((Long) session.getAttribute("userID"));
 
             // Save Sheet
             sheetService.saveNewSheet(sheetRepository, newSheet);
@@ -231,7 +231,7 @@ public class CreateController {
     public String showCCSelectSheetPage(HttpSession session) {
 
         // Get All of the Logged in User's Character Sheets
-        List<LMSheet> userSheets = sheetRepository.getUserSheets(0l); // TODO Pass in from session variable
+        List<LMSheet> userSheets = sheetRepository.getUserSheets((Long) session.getAttribute("userID"));
         session.setAttribute("userSheets", userSheets);
 
         return "createCharacterSelectSheet";
@@ -300,7 +300,7 @@ public class CreateController {
             newChar.setCharacterID(charID);
             newChar.setCharacterName(characterAttributes.get(0).characterName);
             newChar.setCharacterSheetID(sheetID);
-            newChar.setCharacterUserID(0l); // TODO Add Session Variable ID
+            newChar.setCharacterUserID((Long) session.getAttribute("userID"));
             characterService.saveNewCharacter(characterRepository, newChar);
 
         } else {

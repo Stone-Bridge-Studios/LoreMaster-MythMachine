@@ -38,9 +38,23 @@
         justify-content: center;
         align-items: center;
     }    
+
 </style>
 </head>
 <body>
+
+    <header>
+        <nav>
+          <div class="logo">
+            <img src="\images\loremaster_icon.jpg" alt="App Logo">
+            <span>LoreMaster Character Creator | Create</span>
+          </div>
+          <div class="profile-icon">
+            <span>${userName}</span>
+            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
+          </div>
+        </nav>
+      </header>   
 
     <div class="bottom-nav">
         <a href="/characters"><button>Chracters</button></a>

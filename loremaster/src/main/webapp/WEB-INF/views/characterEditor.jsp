@@ -55,6 +55,18 @@
 </head>
 <body>
 
+    <header>
+        <nav>
+          <div class="logo">
+            <img src="\images\loremaster_icon.jpg" alt="App Logo">
+            <span>LoreMaster Character Creator | Character Editor</span>
+          </div>
+          <div class="profile-icon">
+            <span>${userName}</span>
+            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
+          </div>
+        </nav>
+      </header>    
 
     <h1 id="attributeName">Attribute Name:</h1>
     <h3 id="attributeDesc">This attribute is very attribute.</h3>
