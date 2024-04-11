@@ -1,4 +1,5 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 
 <!DOCTYPE html>
 <html>
@@ -82,12 +83,15 @@
             var displayItem = document.createElement("li");            
             
             var displayText = document.createElement("p");
-            displayText.innerHTML = sheetAtt.name + " : " + charAtt.ca_value;
+            displayText.innerHTML = restoreQuotes(sheetAtt.name) + " : " + restoreQuotes(charAtt.ca_value);
             displayItem.appendChild(displayText);
 
             document.getElementById("charAttList").appendChild(displayItem);
         }
 
+        function restoreQuotes(str) {
+            return str.replace(/@/g, "'").replace(/%/g, '"');
+        }        
 
     </script>
 

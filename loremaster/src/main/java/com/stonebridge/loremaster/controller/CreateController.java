@@ -34,6 +34,11 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class CreateController {
 
+    // TODO Move to utility class
+    public static String replaceQuotes(String str) {
+        return str.replace("'", "@").replace("\"", "%");
+    }
+
     // #region Sheet Creation
     @Autowired
     private LMSheetRepository sheetRepository;
@@ -93,7 +98,7 @@ public class CreateController {
         session.setAttribute("sheetTargetID", sheetID);
 
         // Store Sheet's Current Name (Empty String)
-        session.setAttribute("sheetTitle", sheetRepository.getSheetName(sheetID));
+        session.setAttribute("sheetTitle", replaceQuotes(sheetRepository.getSheetName(sheetID)));
 
         return "createSheetAttributeEditor";
     }
@@ -357,7 +362,7 @@ public class CreateController {
 
         // Get Character's Name
         String charName = characterRepository.getCharacterName(charID);
-        session.setAttribute("characterName", charName);
+        session.setAttribute("characterName", replaceQuotes(charName));
 
         session.setAttribute("characterEditTargetID", charID);
 

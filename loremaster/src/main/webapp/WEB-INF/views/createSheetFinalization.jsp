@@ -47,14 +47,24 @@
 
     <p1>Sheet Title:</p1>
     <form method="post", action="/finalizeNewSheet" autocomplete="off">
-        <br><input type="text" name="sheetTitle" class="form" value="${sheetTitle}" /><br><br>        
+        <br><input id="title" type="text" name="sheetTitle" class="form" value="${sheetTitle}" /><br><br>        
         <div class="bottom-nav">
             <a href="/createSheetAttributeEditor">Back</a>
             <input value="Finish" class="submitInput" type="submit">
         </div>
     </form>
 
-    <script src="\js\sheetEditor.js"></script>
+    <script src="\js\sheetEditor.js">
+
+    </script>
+
+    <script>
+        function restoreQuotes(str) {
+            return str.replace(/@/g, "'").replace(/%/g, '"');
+        } 
+        console.warn(document.getElementById("title").value)
+        document.getElementById("title").value = restoreQuotes(document.getElementById("title").value)
+    </script>
 
 </body>
 </html>

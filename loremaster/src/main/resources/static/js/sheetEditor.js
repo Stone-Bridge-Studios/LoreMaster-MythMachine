@@ -78,8 +78,8 @@ function saveAttributes() {
     for (var i = 0; i < names.length; i++) {
         var attribute = {
             attributeID : attributeIDs[i],
-            name : names[i],
-            desc : descs[i]
+            name : replaceQuotes(names[i]),
+            desc : replaceQuotes(descs[i])
         }        
         attributeList.push(attribute);
     }
@@ -98,12 +98,20 @@ function saveAttributes() {
 }
 
 function loadExistingAttributes(existingAttributes) {
-
+    
     var attributes = JSON.parse(existingAttributes);
-    for (var i = 0; i < attributes.length; i++) {
-        addAttribute(attributes[i].attributeID,attributes[i].name,attributes[i].desc);
+    for (var i = 0; i < attributes.length; i++) {        
+        addAttribute(attributes[i].attributeID,restoreQuotes(attributes[i].name),restoreQuotes(attributes[i].desc));
     }
 
+}
+
+function replaceQuotes(str) {
+    return str.replace(/'/g, '@').replace(/"/g, '%');
+}
+
+function restoreQuotes(str) {
+    return str.replace(/@/g, "'").replace(/%/g, '"');
 }
 
 

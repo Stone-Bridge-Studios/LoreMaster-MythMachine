@@ -1,5 +1,6 @@
 
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 
 <!DOCTYPE html>
 <html>
@@ -78,6 +79,7 @@
 
         <script>
             window.onload = function() {
+                
                 if ('${sheetTargetID}' != -1) {
                     loadExistingAttributes('${editAttributes}');
                 }

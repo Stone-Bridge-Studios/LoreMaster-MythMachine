@@ -99,8 +99,13 @@
             }
             
         }
+        else {
+            for (var i = 0; i < characterAttributes.length; i++) { 
+                characterAttributes[i].ca_value = restoreQuotes(characterAttributes[i].ca_value);
+            }            
+        }
 
-        var characterName = '${characterName}';
+        var characterName = restoreQuotes('${characterName}');
 
         // Create Index for cycling through sheet attributes
         var aIndex = 0;
@@ -154,8 +159,8 @@
             
             var attName = document.getElementById("attributeName");
             var attDesc = document.getElementById("attributeDesc");
-            attName.innerHTML = sheetAttributes[aIndex].name;
-            attDesc.innerHTML = sheetAttributes[aIndex].desc;
+            attName.innerHTML = restoreQuotes(sheetAttributes[aIndex].name);
+            attDesc.innerHTML = restoreQuotes(sheetAttributes[aIndex].desc);
 
             var attTextBox = document.getElementById("attTextBox");
             attTextBox.value = characterAttributes[aIndex].ca_value;
@@ -207,6 +212,7 @@
             
             // Update Character Names
             for (var i = 0; i < characterAttributes.length; i++) { // TODO Add editing of existing characters here
+                characterAttributes[i].ca_value = replaceQuotes(characterAttributes[i].ca_value);
                 characterAttributes[i].characterName =  attTextBox.value;
             }
 
@@ -218,6 +224,14 @@
 
         }
  
+        function replaceQuotes(str) {
+            return str.replace(/'/g, '@').replace(/"/g, '%');
+        }
+
+        function restoreQuotes(str) {
+            return str.replace(/@/g, "'").replace(/%/g, '"');
+        }        
+
     </script>
 
 </body>
