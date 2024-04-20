@@ -1,0 +1,7 @@
+com.stonebridge.loremaster
+com.stonebridge.loremaster.controller
+com.stonebridge.loremaster.model
+com.stonebridge.loremaster.model.DTO
+com.stonebridge.loremaster.model.logical
+com.stonebridge.loremaster.repository
+com.stonebridge.loremaster.service
