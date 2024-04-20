@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.stonebridge.loremaster.model.LMCharacter;
 import com.stonebridge.loremaster.model.LMSheet;
+import com.stonebridge.loremaster.repository.LMAttributeRepository;
+import com.stonebridge.loremaster.repository.LMCharacterAttributeRepository;
 import com.stonebridge.loremaster.repository.LMCharacterRepository;
 import com.stonebridge.loremaster.repository.LMSheetRepository;
 import com.stonebridge.loremaster.repository.LMUserRepository;
+import com.stonebridge.loremaster.service.LMUserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,6 +31,12 @@ public class HomeController {
 
     @Autowired
     private LMUserRepository userRepository;
+
+    @Autowired
+    private LMAttributeRepository attributeRepository;
+
+    @Autowired
+    private LMCharacterAttributeRepository characterAttributeRepository;
 
     @RequestMapping(value = "/characters", method = RequestMethod.GET)
     public String showCharactersPage(HttpSession session, ModelMap model) {
@@ -77,7 +86,18 @@ public class HomeController {
     public String deleteAccount(HttpSession session) {
         Long userID = (Long) session.getAttribute("userID");
         userRepository.deleteUser(userID);
+
+        LMUserService service = new LMUserService();
+
+        service.deleteAllUserContent(userID, sheetRepository, characterRepository, attributeRepository,
+                characterAttributeRepository);
+
         return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/anthropic", method = RequestMethod.GET)
+    public String anthropic(HttpSession session) {
+        return "/anthropic";
     }
 
 }

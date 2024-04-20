@@ -33,4 +33,9 @@ public interface LMAttributeRepository extends JpaRepository<LMAttribute, Long> 
     @Query(value = "DELETE FROM lm_attribute WHERE sheet_id = :sheetID", nativeQuery = true)
     void deleteAllSheetAttributes(Long sheetID);
 
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM lm_attribute bt WHERE NOT EXISTS ( SELECT * FROM lm_sheet WHERE lm_sheet.sheet_id = bt.sheet_id );", nativeQuery = true)
+    void deleteOrphanedAttributes();
+
 }

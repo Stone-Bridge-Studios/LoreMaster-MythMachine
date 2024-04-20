@@ -1,19 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LoreMaster Character Creator</title>
-        <link rel="stylesheet" type="text/css" href="\css\style.css">
+        <link rel="stylesheet" type="text/css" href="\css\bootstrap.min.css">
     </head>
-    <center>
-        <h1>Create An Account</h1>
-        <h2>Please Enter Your Email, Username, & Password for your LoreMaster Account</h2>
-        <font color="red">${errorMessage}</font>
-        <form method="post">
-            Email : <input type="text" name="email" /><br><br>
-            User Name : <input type="text" name="name" /><br><br>
-            Password  : <input type="password" name="password" /><br><br>
-            <a href="/login"><input value="Back" class="submitInput"/></a>
-            <input value="Create Account" class="submitInput" type="submit"/>
-        </form>
-    </center>
+    <style>
+        @media (min-width: 370px) {
+            .container{
+                max-width: 370px;
+                margin-top: 5%;
+                padding: 8px;
+            }
+        }
+        .errorMessage {
+            font-size: 20px;
+            color: red;
+        }        
+    </style>
+    <body>
+        <div class="container">
+            <form method="post">
+                <img class="mb-4" src="\images\loremaster_icon.jpg" alt="" width="348" height="348">
+                <h1 class="h3 mb-3 fw-normal">Welcome to LoreMaster</h1>
+                <h2 class="h4 mb-3 fw-normal">Create Account</h2>
+                <h3 class="errorMessage">${errorMessage}</h3>      
+                <div class="form-floating">
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" name="name" class="form-control" id="floatingPassword" placeholder="Username">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>                   
+                <br>
+                <button class="btn btn-primary w-5 py-2" type="submit">Create Account</button>&nbsp;&nbsp;
+                Already have one?&nbsp;&nbsp;<a href="/login">Log in</a>
+                <p class="mt-5 mb-3 text-body-secondary">&copy; 2024</p>
+                
+            </form>  
+        </div>
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+
+    </body>
 </html>
+

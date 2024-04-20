@@ -24,4 +24,15 @@ public interface LMCharacterAttributeRepository extends JpaRepository<LMCharacte
     @Query(value = "DELETE FROM lm_character_attributes WHERE character_id = :charID", nativeQuery = true)
     void deleteAllCharacterAttributes(Long charID);
 
+    // SQL Statement provided by Claude AI
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM lm_character_attributes bt WHERE NOT EXISTS ( SELECT * FROM lm_attribute WHERE lm_attribute.attribute_id = bt.attribute_id );", nativeQuery = true)
+    void updateDeletedSheetAttributes();
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM lm_character_attributes bt WHERE NOT EXISTS ( SELECT * FROM lm_character WHERE lm_character.character_id = bt.character_id );", nativeQuery = true)
+    void deleteOrphanedCharacterAttributes();
+
 }

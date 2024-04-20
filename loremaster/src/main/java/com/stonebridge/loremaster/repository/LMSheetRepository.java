@@ -30,4 +30,9 @@ public interface LMSheetRepository extends JpaRepository<LMSheet, Long> {
     @Query(value = "DELETE FROM lm_sheet WHERE sheet_id = :sheetID", nativeQuery = true)
     void deleteSheet(Long sheetID);
 
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM lm_sheet WHERE user_id = :userID", nativeQuery = true)
+    void deleteSheetByUser(Long userID);
+
 }

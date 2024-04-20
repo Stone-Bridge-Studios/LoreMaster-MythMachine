@@ -2,14 +2,11 @@
 <html>
 <head>
     <title>LoreMaster Character Creator</title>
-    <link rel="stylesheet" type="text/css" href="\css\style.css">
+    <link rel="stylesheet" type="text/css" href="\css\bootstrap.min.css">
 </head>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
+
+
     .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -20,6 +17,7 @@
         justify-content: space-around;
         padding: 10px 0;
     }
+
     .bottom-nav button {
         background-color: #555;
         color: white;
@@ -29,44 +27,98 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
-    .bottom-nav button:hover,
-    .bottom-nav button.selected {
+
+    .bottom-nav button:hover, .bottom-nav button.selected {
         background-color: #777;
     }
-    .center-buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }    
 
+    .profile-nav {
+        right: 30px;
+        margin-top: -28px;
+        position: fixed;
+    }
+
+    .container {
+        margin-top: 120px;
+        margin-bottom: 190px;
+    }
+
+    .character-name {
+        text-align: center;
+    }
+
+    .profile-pic-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .edit-pic-btn {
+        position: absolute;
+        top: 3px;
+        left: 120px;
+    }    
+    
 </style>
 </head>
 <body>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/characters">LoreMaster | ${userName}'s Profile</a>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <div class="profile-nav">
+                            <span>${userName}</span>
+                            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture" width="56" height="56"></a>
+                        </div>
+                    </li>
+                </ul>
+        </div>
+    </nav>    
 
-    <header>
-        <nav>
-          <div class="logo">
-            <img src="\images\loremaster_icon.jpg" alt="App Logo">
-            <span>LoreMaster Character Creator | Your Profile</span>
-          </div>
-          <div class="profile-icon">
-            <span>${userName}</span>
-            <img src="\images\default_pfp.png" alt="Profile Picture">
-          </div>
-        </nav>
-    </header>
-
-    <img src="\images\default_pfp.png" alt="Profile Picture">
-    <h1>${userName}</h1>
-    <a href="/logoutUser"><button>Log Out</button></a>
-    <a href="/deleteAccount"><button>Delete Account</button></a>
-
-    <div class="bottom-nav">
-        <a href="/characters"><button>Chracters</button></a>
-        <a href="/sheets"><button>Sheets</button></a>
-        <a href="/create"><button>Create</button></a>
-        <a href="/explore"><button>Explore</button></a>
+    <!-- Profile Card, Claude AI used to improve -->
+    <div class="container mt-50">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center">User Profile</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="profile-pic-container">
+                            <img src="\images\default_pfp.png" alt="Profile Picture" class="rounded-circle" width="150" height="150">
+                            <button class="btn btn-sm btn-primary edit-pic-btn">Edit Picture</button>
+                        </div>
+                        <h5 class="card-title mt-3">${userName}</h5>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-md-6">
+                                <a href="/deleteAccount"><button class="btn btn-danger btn-block">Delete Account</button></a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="/logoutUser"><button class="btn btn-primary btn-block">Logout</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Bottom Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-bottom" data-bs-theme="dark">
+        <div class="bottom-nav">
+            <a href="/characters"><button>Characters</button></a>
+            <a href="/sheets"><button>Sheets</button></a>
+            <a href="/create"><button>Create</button></a>
+            <a href="/explore"><button>Explore</button></a>
+        </div>
+    </nav>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>       
 
 </body>
 </html>

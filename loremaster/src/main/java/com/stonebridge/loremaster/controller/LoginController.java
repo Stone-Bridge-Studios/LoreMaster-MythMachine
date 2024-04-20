@@ -13,6 +13,8 @@ import com.stonebridge.loremaster.model.LMUser;
 import com.stonebridge.loremaster.repository.LMUserRepository;
 import com.stonebridge.loremaster.service.LMUserService;
 
+import org.mindrot.jbcrypt.*;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -39,7 +41,16 @@ public class LoginController {
             @RequestParam String password) {
 
         LMUserService service = new LMUserService();
-        boolean isValidUser = service.validateUser(userRepository, email, password);
+        LMUser user = userRepository.findByEmail(email);
+
+        boolean isValidUser = false;
+
+        // Re-hash the input password
+        if (user != null) {
+            String hashed = BCrypt.hashpw(password, user.getSalt());
+            isValidUser = (BCrypt.checkpw(password, hashed)) ? service.validateUser(userRepository, email, hashed)
+                    : false;
+        }
 
         if (!isValidUser) {
             model.put("errorMessage", "Your account email or password is incorrect. Please try again.");
@@ -50,7 +61,7 @@ public class LoginController {
         model.put("password", password);
 
         // Store User ID & Username in Session
-        LMUser user = userRepository.findByEmail(email);
+
         String username = userRepository.getUserName(user.getUserID());
         session.setAttribute("userID", user.getUserID());
         session.setAttribute("userName", username);
@@ -85,10 +96,18 @@ public class LoginController {
         }
         // Otherwise, add the new user to the database and automatically log the user in
         else {
+
+            // Generate a Salt for the user
+            String salt = BCrypt.gensalt();
+
+            // Hash the input password with the salt
+            String hashed = BCrypt.hashpw(password, salt);
+
             LMUser newUser = new LMUser();
             newUser.setEmail(email);
             newUser.setUsername(name);
-            newUser.setPassword(password);
+            newUser.setPassword(hashed);
+            newUser.setSalt(salt);
             newUser.setIsAdmin(false);
             service.saveNewUser(userRepository, newUser);
             return "redirect:/login";

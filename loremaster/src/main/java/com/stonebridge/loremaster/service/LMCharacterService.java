@@ -23,4 +23,10 @@ public class LMCharacterService {
         characterRepository.deleteCharacter(charID);
     }
 
+    public void deleteCharacterBySheet(LMCharacterRepository characterRepository,
+            LMCharacterAttributeRepository charAttributeRepository, Long sheetID) {
+        characterRepository.deleteCharactersBySheet(sheetID);
+        charAttributeRepository.deleteOrphanedCharacterAttributes();
+    }
+
 }

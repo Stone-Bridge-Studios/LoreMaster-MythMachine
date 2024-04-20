@@ -15,6 +15,9 @@ public interface LMCharacterRepository extends JpaRepository<LMCharacter, Long> 
     @Query(value = "SELECT * FROM lm_character c WHERE c.user_id = :userID", nativeQuery = true)
     List<LMCharacter> findByUserID(String userID);
 
+    @Query(value = "SELECT * FROM lm_character c WHERE c.sheet_id = :sheetID", nativeQuery = true)
+    List<LMCharacter> findBySheetID(String sheetID);
+
     @Query(value = "SELECT next_val FROM character_sequence", nativeQuery = true)
     Long getNextCharacterID();
 
@@ -36,5 +39,15 @@ public interface LMCharacterRepository extends JpaRepository<LMCharacter, Long> 
     @Modifying
     @Query(value = "DELETE FROM lm_character WHERE character_id = :charID", nativeQuery = true)
     void deleteCharacter(Long charID);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM lm_character WHERE sheet_id = :sheetID", nativeQuery = true)
+    void deleteCharactersBySheet(Long sheetID);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM lm_character WHERE user_id = :userID", nativeQuery = true)
+    void deleteCharactersByUser(Long userID);
 
 }

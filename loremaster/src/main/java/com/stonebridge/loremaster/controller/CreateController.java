@@ -66,7 +66,7 @@ public class CreateController {
         session.setAttribute("sheetTargetID", -1l);
 
         // Store Sheet's Current Name (Empty String)
-        session.setAttribute("sheetTitle", "New Sheet");
+        session.setAttribute("sheetTitle", "");
 
         return "createSheetAttributeEditor";
     }
@@ -136,6 +136,7 @@ public class CreateController {
         // Get the Sheet Service
         LMSheetService sheetService = new LMSheetService();
         LMAttributeService attributeService = new LMAttributeService();
+        LMCharacterAttributeService characterAttributeService = new LMCharacterAttributeService();
 
         Long sheetTargetID = (Long) session.getAttribute("sheetTargetID");
 
@@ -185,6 +186,9 @@ public class CreateController {
 
             }
 
+            // Apply Removed Attribute Changes to Character Attributes
+            characterAttributeService.updateCharactersSheetRemoved(characterAttributeRepository);
+
         } else { // Creating New Sheet
 
             // Get the new sheet's new ID
@@ -227,6 +231,8 @@ public class CreateController {
         LMSheetService service = new LMSheetService();
         service.deleteSheet(sheetRepository, attributeRepository, sheetID);
 
+        LMCharacterService charService = new LMCharacterService();
+        charService.deleteCharacterBySheet(characterRepository, characterAttributeRepository, sheetID);
         // TODO Fix Refresh
         return "redirect:/sheets";
     }
@@ -265,7 +271,7 @@ public class CreateController {
         session.setAttribute("currentSheet", sheetID);
         session.setAttribute("characterSheetAttributes", jsonAttributes);
         session.setAttribute("characterAttributes", "-1"); // Flag as not editing an existing character
-        session.setAttribute("characterName", "New Character");
+        session.setAttribute("characterName", "");
 
         return "selectCharacterSheet";
     }
