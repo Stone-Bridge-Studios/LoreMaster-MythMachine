@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.stonebridge.loremaster.model.LMCharacter;
 import com.stonebridge.loremaster.model.LMSheet;
+import com.stonebridge.loremaster.repository.LMAttributeRepository;
+import com.stonebridge.loremaster.repository.LMCharacterAttributeRepository;
 import com.stonebridge.loremaster.repository.LMCharacterRepository;
 import com.stonebridge.loremaster.repository.LMSheetRepository;
 import com.stonebridge.loremaster.repository.LMUserRepository;
+import com.stonebridge.loremaster.service.LMUserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,35 +32,17 @@ public class HomeController {
     @Autowired
     private LMUserRepository userRepository;
 
-    @RequestMapping(value = "/characters", method = RequestMethod.GET)
-    public String showCharactersPage(HttpSession session, ModelMap model) {
+    @Autowired
+    private LMAttributeRepository attributeRepository;
 
-        // Get All of the Logged in User's Characters
-        List<LMCharacter> userCharacters = characterRepository.getUserCharacters((Long) session.getAttribute("userID"));
-        model.addAttribute("userCharacters", userCharacters);
+    @Autowired
+    private LMCharacterAttributeRepository characterAttributeRepository;
 
-        return "characters";
-    }
 
-    @RequestMapping(value = "/sheets", method = RequestMethod.GET)
-    public String showSheetsPage(HttpSession session, ModelMap model) {
 
-        // Get All of the Logged in User's Character Sheets
-        List<LMSheet> userSheets = sheetRepository.getUserSheets((Long) session.getAttribute("userID"));
-        model.addAttribute("userSheets", userSheets);
-
-        return "sheets";
-
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String showCreatePage(ModelMap model) {
-        return "create";
-    }
-
-    @RequestMapping(value = "/explore", method = RequestMethod.GET)
+    @RequestMapping(value = "/stories", method = RequestMethod.GET)
     public String showExplorePage(ModelMap model) {
-        return "explore";
+        return "stories";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -77,7 +62,18 @@ public class HomeController {
     public String deleteAccount(HttpSession session) {
         Long userID = (Long) session.getAttribute("userID");
         userRepository.deleteUser(userID);
+
         return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/anthropic", method = RequestMethod.GET)
+    public String anthropic(HttpSession session) {
+        return "/anthropic";
+    }
+
+    @RequestMapping(value = "/storyEditor", method = RequestMethod.GET)
+    public String storyEditor(HttpSession session) {
+        return "/storyEditor";
     }
 
 }

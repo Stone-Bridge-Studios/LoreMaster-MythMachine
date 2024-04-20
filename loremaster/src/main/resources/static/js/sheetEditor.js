@@ -1,17 +1,10 @@
 
 
 // Editing Character Sheet Attributes with AJAX
-function addAttribute(attributeID="-1",name="New Attribute",desc="An attribute to describe a character") {
+function addAttribute(attributeID="-1",name="",desc="") {
 
     var attributeCount = document.getElementById("attList").getElementsByTagName('li').length;
     var listItem = document.createElement("li");
-
-    // Attribute ID Box
-    var idTextBox = document.createElement("input");
-    idTextBox.id = "attributeID";
-    idTextBox.type = "text";
-    idTextBox.value = attributeID;
-    idTextBox.setAttribute("autocomplete","off");
 
     // Attribute Name Texbox
     var nameTextBox = document.createElement("input");
@@ -19,6 +12,11 @@ function addAttribute(attributeID="-1",name="New Attribute",desc="An attribute t
     nameTextBox.type = "text";
     nameTextBox.value = name;
     nameTextBox.setAttribute("autocomplete","off");
+    nameTextBox.className = "attribute-name-input";
+    nameTextBox.placeholder = "Attribute Name"
+
+    // Store Attribute ID
+    nameTextBox.setAttribute("attributeID",attributeID)
 
     // Attribute Desc Texbox
     var descTextBox = document.createElement("input");
@@ -26,20 +24,20 @@ function addAttribute(attributeID="-1",name="New Attribute",desc="An attribute t
     descTextBox.type = "text";
     descTextBox.value = desc;
     descTextBox.setAttribute("autocomplete","off");
+    descTextBox.className = "attribute-desc-input";
+    descTextBox.placeholder = "An attribute to describe a character"
 
     // Delete Attribute Button
     var deleteAttributeButton = document.createElement("button");
-    deleteAttributeButton.textContent = "Delete";
+    deleteAttributeButton.textContent = "X";
     deleteAttributeButton.id = attributeCount.toString();
     deleteAttributeButton.onclick = deleteAttribute;
+    deleteAttributeButton.className = "x-button"
 
     // Add Items to unordred list
-    listItem.appendChild(idTextBox);
     listItem.appendChild(nameTextBox);
     listItem.appendChild(descTextBox);
     listItem.appendChild(deleteAttributeButton);
-
-    
 
     // Add Texbox Attribute to List
     document.getElementById("attList").appendChild(listItem);
@@ -55,16 +53,14 @@ function saveAttributes() {
 
     var items = document.getElementById("attList").getElementsByTagName('input');
 
-    // Get Attribute IDs
+    // Get Attribute Names & IDs
+    var names = [];
     var attributeIDs = [];
     for (var i = 0; i < items.length; i++) {
-        if (items[i].id == "attributeID") attributeIDs.push(items[i].value);
-    }    
-
-    // Get Attribute Names
-    var names = [];
-    for (var i = 0; i < items.length; i++) {
-        if (items[i].id == "name") names.push(items[i].value);
+        if (items[i].id == "name") {
+            names.push(items[i].value);
+            attributeIDs.push(items[i].getAttribute("attributeID"));
+        }
     }
 
     // Get Attribute Descriptions

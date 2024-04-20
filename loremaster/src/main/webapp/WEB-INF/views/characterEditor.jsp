@@ -2,16 +2,12 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>LoreMaster Character Creator</title>
-    <link rel="stylesheet" type="text/css" href="\css\style.css">
-</head>
+    <head>
+        <title>LoreMaster Character Creator</title>
+        <link rel="stylesheet" type="text/css" href="\css\bootstrap.min.css">
+    </head>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
+
     .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -22,6 +18,8 @@
         justify-content: space-around;
         padding: 10px 0;
     }
+
+
     .bottom-nav button {
         background-color: #555;
         color: white;
@@ -31,52 +29,122 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
-    .bottom-nav button:hover,
-    .bottom-nav button.selected {
+
+    .bottom-nav button:hover, .bottom-nav button.selected {
         background-color: #777;
     }
-    .center-buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }    
 
-    #attributeName {
-        display: block; /* Ensures each paragraph is on its own line */
-        margin-bottom: 0; /* Removes default bottom margin */
+    .profile-nav {
+        right: 30px;
+        margin-top: -28px;
+        position: fixed;
     }
 
-    #attributeDesc {
-        display: block;
-        margin-top: 0; /* Removes default top margin */
-    }    
+    .container {
+        margin-top: 90px;
+        margin-bottom: 90px;
+    }
+
+    .character-name {
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        
+        justify-content: center;
+        align-items: center;
+        position: relative; 
+        text-align: center;
+    }
+
+    #title {
+        width: 300px;
+        text-align: center;
+    }
+
+    textarea {
+        border-radius: 20px;
+        background-color: #f0e6ff;
+        border: 1px solid #9370db; 
+        padding: 10px;
+        color: #6a5acd;       
+        width: fit-content;
+        font-size: 30px;
+    }
+
+    .suggestion-button {
+        width: fit-content;
+        color: #6a5acd;      
+        border: 2px solid #9370db; 
+        background-color: #f0e6ff;
+        border-radius: 20px;  
+        font-size: 21px;
+        margin-bottom: 10px;
+        margin-right: 20px;
+    }
 
 </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-          <div class="logo">
-            <img src="\images\loremaster_icon.jpg" alt="App Logo">
-            <span>LoreMaster Character Creator | Character Editor</span>
-          </div>
-          <div class="profile-icon">
-            <span>${userName}</span>
-            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture"></a>
-          </div>
-        </nav>
-      </header>    
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/characters">LoreMaster | Character Attribute Editor</a>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <div class="profile-nav">
+                            <span>${userName}</span>
+                            <a href="/profile"><img src="\images\default_pfp.png" alt="Profile Picture" width="56" height="56"></a>
+                        </div>
+                    </li>
+                </ul>
+        </div>
+    </nav>
 
-    <h1 id="attributeName">Attribute Name:</h1>
-    <h3 id="attributeDesc">This attribute is very attribute.</h3>
+    
 
-    <textarea id="attTextBox" rows="4" cols="50"></textarea>
+    <!-- Attribute Card -->
+    <div class="container">
+        <div class="card text-white bg-primary mb-3" style="min-width: 70rem; min-height: 40rem;">
+            <div class="card-header"><h1 id="attributeName">Attribute Name:</h1></div><br>
+            <h4 id="attributeDesc" class="card-title">Primary card title</h4>
+            <div class="card-body">               
+                <textarea id="attTextBox" rows="9" cols="55" placeholder="Enter character attribute value"></textarea>
+            </div>
+        </div>      
+    </div>     
 
-    <div class="bottom-nav">
-        <button id="cycleBack">Back</button>
-        <button id="cycleNext">Next</button>
-    </div>
+    <!-- AI Suggestions Card -->
+    <div class="container">        
+        <div class="card text-white bg-primary mb-3" style="min-width: 70rem; min-height: 12rem;">
+            <div class="card-header"><h4>AI Suggestions</h4></div>
+                <div class="row row-cols-auto justify-content-center">                    
+                    <div class="col">
+                        <button onclick="getAISuggestions()">Gogo Gadget</button>
+                        <div style="margin-top: 22px;">
+                            <ul id="suggestion-box">
+                            
+                            </ul>
+                        </div>                            
+                    </div>                                          
+                </div>
+            </div>                
+        </div>   
+    </div>  
+
+    <!-- Bottom Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-bottom" data-bs-theme="dark">
+        <div class="bottom-nav">
+            <button id="cycleBack">Back</button>
+            <button id="cycleNext">Next</button>
+        </div>
+    </nav>    
+
+    <!-- AI Communications -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="\js\claudeAI.js"></script>
 
     <script>
 
@@ -92,7 +160,7 @@
                 var ca = {
                     characterID : "-1", // Overwrite when saving to DB
                     attributeID : sheetAttributes[i].attributeID,
-                    ca_value : "Enter character value",
+                    ca_value : "",
                     characterName : "" // Overwrite all when saving
                 }            
                 characterAttributes.push(ca);

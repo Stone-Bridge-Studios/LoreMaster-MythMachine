@@ -1,7 +1,9 @@
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LoreMaster Character Creator</title>
+    <title>MythMachine</title>
     <link rel="stylesheet" type="text/css" href="\css\bootstrap.min.css">
 </head>
 <style>
@@ -78,7 +80,7 @@
     <!-- Top Navbar -->
     <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/characters">LoreMaster | Create</a>
+            <a class="navbar-brand" href="/stories">MythMachine | Stories</a>
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <div class="profile-nav">
@@ -90,27 +92,27 @@
         </div>
     </nav>
 
-    <!-- Bottom Navbar -->
-    <nav class="navbar navbar-expand-lg bg-primary fixed-bottom" data-bs-theme="dark">
-        <div class="bottom-nav">
-            <a href="/characters"><button>Characters</button></a>
-            <a href="/sheets"><button>Sheets</button></a>
-            <a href="/create"><button class="selected">Create</button></a>
-            <a href="/explore"><button>Explore</button></a>
-        </div>
-    </nav>
     <div class="container">
         <!-- Title Card -->
         <div class="card text-white bg-dark mb-3" style="min-width: 70rem; min-height: 18rem;">
             <div class="card-header"><h1>What would you like to create?</h1></div>
             <div class="card-body">                
                 
-                <a href="/createCharacterSelectSheet"><button id="char-button" class="btn btn-lg btn-primary" type="button">A New Character</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/createNewSheet"><button id="sheet-button" class="btn btn-lg btn-primary" type="button">A New Sheet</button></a>   
+                <a href="/storyEditor"><button id="char-button" class="btn btn-lg btn-primary" type="button">New Short Story</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/stories"><button id="sheet-button" class="btn btn-lg btn-primary" type="button">Edit Existing Story</button></a>   
                 
             </div>
         </div>    
     </div>   
-    
+
+    <!-- Bottom Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-bottom" data-bs-theme="dark">
+        <div class="bottom-nav">
+            <a href="/stories"><button class="selected">Stories</button></a>
+        </div>
+    </nav>
+
+     
+
 </body>
 </html>

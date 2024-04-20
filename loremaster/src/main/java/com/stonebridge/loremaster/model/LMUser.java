@@ -65,4 +65,15 @@ public class LMUser {
         isAdmin = inputIsAdmin;
     }
 
+    @Column(name = "salt")
+    private String salt;
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String inputSalt) {
+        salt = inputSalt;
+    }
+
 }
