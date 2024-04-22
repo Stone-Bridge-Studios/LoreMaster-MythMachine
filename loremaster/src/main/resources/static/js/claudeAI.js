@@ -30,7 +30,7 @@
     console.warn(prompt)
     
     var sysSpec = "Respond only in single words delimited by commas";
-
+    
     $.ajax({
       url: "http://localhost:5000/api/anthropic",
       type: "POST",
@@ -41,7 +41,7 @@
         loadAISuggestions(response.result);
       }
     });    
-
+    
 
     // Test
     //loadAISuggestions("Blonde, Brown, Black, Red, Auburn, Chestnut, Strawberry Blonde, Golden, Honey, Ash, Sandy, Platinum, Silver, Gray, White, Raven, Jet Black, Ebony, Salt and Pepper, Mousy, Dirty Blonde, Copper, Ginger, Titian, Burgundy, Mahogany, Crimson, Purple, Lavender, Blue, Green, Pink, Rainbow, Multicolored, Ombre, Highlighted, Streaked, Dyed")
@@ -64,6 +64,10 @@
     }
 
 
+  }
+
+  function clearSuggestionButtons() {
+    document.getElementById("suggestion-box").innerHTML = "";
   }
 
   function selectSuggestion(button) {

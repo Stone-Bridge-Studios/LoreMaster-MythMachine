@@ -182,6 +182,7 @@
         var cycleNextButton = document.getElementById("cycleNext");
         var cycleBackButton = document.getElementById("cycleBack");             
         cycleNextButton.addEventListener("click", function() {
+            clearSuggestionButtons()
                 if (currentEditor == "attribute") {
                     if (aIndex >= sheetAttributes.length - 1) {
                         editCharacterAttribute()
@@ -200,6 +201,7 @@
             });
 
         cycleBackButton.addEventListener("click", function() {
+            clearSuggestionButtons()
             if (currentEditor == "attribute") {
                 if (aIndex <= 0) {
                     editCharacterAttribute()

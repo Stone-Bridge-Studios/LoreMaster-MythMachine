@@ -49,12 +49,17 @@
     .character-name {
         text-align: center;
     }
+
+    .topnav {
+        background-color: #5b1f83;
+    }
     
 </style>
 </head>
 <body>
 
     <!-- Top Navbar -->
+    <div class="topnav">
     <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/characters">LoreMaster | Your Characters</a>
@@ -68,6 +73,7 @@
                 </ul>
         </div>
     </nav>
+    </div>
 
     <!-- Character Cards -->
     <div class="container">
