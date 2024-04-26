@@ -22,6 +22,8 @@
 
     // Once the request succeeds, the response will passed to loadAISugestions
 
+    addLoadingDots(); // Display Loading dots
+
     var attName = document.getElementById("attributeName").innerHTML;
     var attDesc = document.getElementById("attributeDesc").innerHTML;
 
@@ -37,7 +39,8 @@
       data: JSON.stringify({ prompt: prompt, sysSpec: sysSpec }),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      success: function(response) {          
+      success: function(response) {        
+        removeLoadingDots();  
         loadAISuggestions(response.result);
       }
     });    
@@ -78,6 +81,31 @@
   // String Tokenizer Provided by Claude
   function splitByComma(str) {
     return str.split(',').map(item => item.trim());
+  }
+
+  function addLoadingDots() {
+
+    document.getElementById("ai-card-title").innerHTML = "Generating AI Suggestions . . ."
+
+    document.getElementById("card-box").innerHTML = `
+    <div class="col-3">                                
+      <div class="snippet" data-title="dot-spin">
+          <div class="stage">
+            <div class="dot-spin"></div>
+          </div>
+        </div>  
+    </div>
+    `
+  }
+
+  function removeLoadingDots() {
+    document.getElementById("ai-card-title").innerHTML = "AI Suggestions";
+    document.getElementById("card-box").innerHTML = "";
+  }
+
+  function restoreGenerateButton() {
+    document.getElementById("ai-card-title").innerHTML = "AI Suggestions";
+    document.getElementById("card-box").innerHTML = `<button class="btn btn-sm btn-secondary" onclick="getAISuggestions()">Generate AI Suggestions</button>`
   }
 
   // <button onclick="selectSuggestion(this)" class="suggestion-button">AI Suggestion Here</button>

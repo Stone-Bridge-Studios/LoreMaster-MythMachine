@@ -5,6 +5,7 @@
     <head>
         <title>LoreMaster Character Creator</title>
         <link rel="stylesheet" type="text/css" href="\css\bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="\css\dotspin.css">
     </head>
 <style>
 
@@ -119,15 +120,17 @@
     <!-- AI Suggestions Card -->
     <div class="container">        
         <div class="card text-white bg-primary mb-3" style="min-width: 70rem; min-height: 12rem;">
-            <div class="card-header"><h4>AI Suggestions</h4></div>
-                <div class="row row-cols-auto justify-content-center">                    
+            <div class="card-header"><h4 id="ai-card-title">AI Suggestions</h4></div>
+                <div class="row row-cols-auto justify-content-center">                                        
                     <div class="col">
-                        <button onclick="getAISuggestions()">Gogo Gadget</button>
-                        <div style="margin-top: 22px;">
+                        <div style="margin-top: 22px;">     
+                        <div id="card-box">
+                            <button class="btn btn-sm btn-secondary" onclick="getAISuggestions()">Generate AI Suggestions</button>
+                        </div>                                                                                 
                             <ul id="suggestion-box">
-                            
+
                             </ul>
-                        </div>                            
+                        </div>                                                    
                     </div>                                          
                 </div>
             </div>                
@@ -183,6 +186,7 @@
         var cycleBackButton = document.getElementById("cycleBack");             
         cycleNextButton.addEventListener("click", function() {
             clearSuggestionButtons()
+            restoreGenerateButton()
                 if (currentEditor == "attribute") {
                     if (aIndex >= sheetAttributes.length - 1) {
                         editCharacterAttribute()
@@ -202,6 +206,7 @@
 
         cycleBackButton.addEventListener("click", function() {
             clearSuggestionButtons()
+            restoreGenerateButton()
             if (currentEditor == "attribute") {
                 if (aIndex <= 0) {
                     editCharacterAttribute()
