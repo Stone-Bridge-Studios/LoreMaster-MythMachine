@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "outDir": "./src/main/resources/static/js",
+      "target": "es2017",
+      "moduleResolution": "Node",
+      "baseUrl": ".",
+      "paths": {
+        "@anthropic-ai/sdk": ["node_modules/@anthropic-ai/sdk/dist/index.js"]
+      }      
+    },
+    "include": ["./src/**/*"]
+  }
